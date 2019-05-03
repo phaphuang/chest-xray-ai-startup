@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div style="padding-top: 20px">
+    <p>Selected image:<img src="{{ url_for('static', filename='uploads/' + img_src) }}" style="margin: 0 auto; display:block; max-width: 400px; height: 300px;"></p>
+</div>
+<div style="padding-top: 10px">
+    <p>Results:</p>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>Status</th>
+                    <th>Percent Likelihood</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Normal</th>
+                    <th>{{ prob_good }}</th>
+                </tr>
+                <tr>
+                    <th>Pneumonia</th>
+                    <th>{{ prob_ill }}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

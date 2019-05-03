@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta charset="utf-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/vader/jquery-ui.css" />
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <!-- Browser tab name -->
+    <title>{{ title }}</title>
+
+    <style>
+        body {
+            max-width: 800px;
+            margin: auto;
+            padding: 1em;
+            background: #fff;
+            color: #000000;
+            font: 16px/1.6 menlo, monospace;
+        }
+
+        a {
+            color: #000000;
+        }
+
+        .notice {
+            font-size: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <img src="{{ url_for('static', filename='bg.png') }}" width="800" height="350">
+            
+    </div>
+
+    <form action = "/upload/" method="POST" enctype="multipart/form-data" style="text-align:center;">
+        <input type="file" name="file" />
+        <input type="submit" />
+    </form>
+
+    {% block content %}{% endblock %}
+
+</body>
+
+</html>

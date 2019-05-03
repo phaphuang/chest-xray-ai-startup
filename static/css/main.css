@@ -1,0 +1,11 @@
+body {
+    padding-top: 10px;
+}
+.top-pad {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.navbar {
+    margin-bottom: 40px !important;
+}
