@@ -15,15 +15,11 @@ import tensorflow as tf
 
 DATA_DIR = 'static/uploads'
 
-app = flask.Flask(__name__, static_url_path="/static", static_folder="static")
+app = Flask(__name__, static_url_path="/static", static_folder="static")
 
 #disease_list = ['Atelectasis', 'Consolidation', 'Infiltration', 'Pneumothorax', 'Edema', 'Emphysema', \
                   # 'Fibrosis', 'Effusion', 'Pneumonia', 'Pleural_Thickening', 'Cardiomegaly', 'Nodule', 'Mass', \
                   # 'Hernia']
-
-model = load_model("model/chest-xray-pneumonia.h5")
-global graph
-graph = tf.get_default_graph()
 
 def get_rez(loaded_model, pic):
     img = image.load_img(pic, target_size=(224,224))
@@ -54,5 +50,8 @@ def upload_file():
     return render_template('result.html', img_src=f.filename, prob_good=prob_good*100, prob_ill=prob_ill*100)
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run('0.0.0.0', threaded=True)
+    model = load_model("model/chest-xray-pneumonia.h5")
+    global graph
+    graph = tf.get_default_graph()
+
+    app.run(debug=False, host='0.0.0.0', threaded=True, port=5002)
