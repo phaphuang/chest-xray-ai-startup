@@ -22,10 +22,10 @@ app = Flask(__name__, static_url_path="/static", static_folder="static")
                   # 'Hernia']
 
 def get_rez(loaded_model, pic):
-    img = image.load_img(pic, target_size=(224,224))
+    img = image.load_img(pic, target_size=(150,150))
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
-    x = preprocess_input(x)
+    x /= 255.
     #print(x)
     with graph.as_default():
         p_good, p_ill = np.around(loaded_model.predict(x), decimals=2)[0]
@@ -50,7 +50,7 @@ def upload_file():
     return render_template('result.html', img_src=f.filename, prob_good=prob_good*100, prob_ill=prob_ill*100)
 
 if __name__ == '__main__':
-    model = load_model("model/chest-xray-pneumonia.h5")
+    model = load_model("model/chest-xray-pneumonia-created-model.h5")
     global graph
     graph = tf.get_default_graph()
 
